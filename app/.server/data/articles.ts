@@ -1,12 +1,14 @@
 import fs from 'fs'
+import type { Dirent } from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
+import { Article } from '~/types'
 
 const ARTICLE_RELATIVE_DIR = 'app/assets/blogs'
-const cacheArticles: any = []
+const cacheArticles: Article[] = []
 
 export const getArticles = async () => {
-  if (cacheArticles.length !== 0 && false) {
+  if (cacheArticles.length !== 0) {
     return {
       data: cacheArticles
     }
@@ -16,7 +18,6 @@ export const getArticles = async () => {
     const article = parseArticle(file)
     cacheArticles.push(article)
   })
-  console.log(cacheArticles, 'cacheArticles')
 
   return { data: cacheArticles }
 }
@@ -24,7 +25,7 @@ export const getArticles = async () => {
 export const getArticlesBySlug = async (slug: string) => {
   const { data: articles } = await getArticles()
 
-  return articles.find((article: any) => article.data.slug === slug)
+  return articles.find((article: Article) => article.data.slug === slug)
 }
 
 const getAllArticlFiles = (): Dirent[] => {
@@ -35,8 +36,8 @@ const getAllArticlFiles = (): Dirent[] => {
   return files
 }
 
-const parseArticle = (file: Dirent) => {
+const parseArticle = (file: Dirent): Article => {
   const f = fs.readFileSync(path.resolve(ARTICLE_RELATIVE_DIR, file.name), 'utf-8')
   const article = matter(f)
-  return article
+  return article as unknown as Article
 }
