@@ -13,10 +13,9 @@ export async function loader({ params }: { params: { slug: string } }) {
 export default function ArticlePage() {
   const article = useLoaderData<typeof getArticlesBySlug>()
   const { data, content } = article
-  console.log(content, 'content')
 
   return (
-    <main className="w-100">
+    <main className="w-100 mt-5">
       <div className="mb-5">
         <h1 className="text-4xl font-bold text-primary mb-2">Article</h1>
         <p>{getDisplayDate(new Date(data.createdAt)) }</p>

@@ -25,12 +25,17 @@ export default function Index() {
     <main className="w-100">
       <div className="my-5">
         <div>
-          <p>{"Hello there, I'm Phillip Nguyen, a full-stack developer and this is my personal blog."}</p>
+          <p>Hello there, I'm Phillip Nguyen, a full-stack developer and this is my personal blog.</p>
           <p>My main techstack: #Javascript, #Typescript, #Golang, #React</p>
         </div>
-        <div>
-          <a href="https://www.linkedin.com/in/phillip-nguyen-798998160" target="_blank" rel="noreferrer"><LinkedInIcon /></a>
-          <a href="https://github.com/saldyy" target="_blank" rel="noreferrer"><GithubIcon /></a>
+        <div className="flex flex-row justify-start items-center">
+          <p className="mr-2">{"You can find me on: "}</p>
+          <a className="mr-2" href="https://www.linkedin.com/in/phillip-nguyen-798998160" target="_blank" rel="noreferrer">
+            <LinkedInIcon width={20} height={20} />
+          </a>
+          <a href="https://github.com/saldyy" target="_blank" rel="noreferrer">
+            <GithubIcon width={20} height={20} />
+          </a>
         </div>
 
       </div>
