@@ -17,7 +17,7 @@ export default function ArticlePage() {
   return (
     <main className="w-100 mt-5">
       <div className="mb-5">
-        <h1 className="text-4xl font-bold text-primary mb-2">Article</h1>
+        <h1 className="text-4xl font-bold mb-2">Article</h1>
         <p>{getDisplayDate(new Date(data.createdAt)) }</p>
       </div>
       <div className="prose">
