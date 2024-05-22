@@ -46,7 +46,8 @@ export default function Index() {
             title: val.data.title,
             summary: val.data.summary,
             createdAt: val.data.createdAt,
-            slug: val.data.slug
+            slug: val.data.slug,
+            author: val.data.author
           }} />
         })}
       </div>
