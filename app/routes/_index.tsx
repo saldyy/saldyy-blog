@@ -25,7 +25,7 @@ export default function Index() {
     <main className="w-100">
       <div className="my-5">
         <div>
-          <p>Hello there, I'm Phillip Nguyen, a full-stack developer and this is my personal blog.</p>
+          <p>Hello there, I&apos;m Phillip Nguyen, a full-stack developer and this is my personal blog.</p>
           <p>My main techstack: #Javascript, #Typescript, #Golang, #React</p>
         </div>
         <div className="flex flex-row justify-start items-center">
