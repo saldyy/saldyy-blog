@@ -13,7 +13,8 @@ export const getArticles = async () => {
       data: cacheArticles
     }
   }
-  const allFiles = getAllArticlFiles()
+  const allFiles = getAllArticleFiles()
+
   allFiles.forEach((file) => {
     const article = parseArticle(file)
     cacheArticles.push(article)
@@ -28,7 +29,7 @@ export const getArticlesBySlug = async (slug: string) => {
   return articles.find((article: Article) => article.data.slug === slug)
 }
 
-const getAllArticlFiles = (): Dirent[] => {
+const getAllArticleFiles = (): Dirent[] => {
   const files = fs.readdirSync(path.resolve(ARTICLE_RELATIVE_DIR), { withFileTypes: true })
   files.filter((file: Dirent) => {
     return path.extname(file.name) === '.md'
@@ -39,5 +40,6 @@ const getAllArticlFiles = (): Dirent[] => {
 const parseArticle = (file: Dirent): Article => {
   const f = fs.readFileSync(path.resolve(ARTICLE_RELATIVE_DIR, file.name), 'utf-8')
   const article = matter(f)
+
   return article as unknown as Article
 }
