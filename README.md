@@ -1,36 +1,15 @@
-# Welcome to Remix + Vite!
+### This is my personal blog
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/guides/vite) for details on supported features.
+I am a software engineer and I am passionate about technology. I am always looking for new
+challenges.
+This is my blog where I share my thoughts and learning experiences.
 
-## Development
+It hosting in [https://saldyy.com](https://saldyy.com).
 
-Run the Vite dev server:
+This is my first version of it using Remix. However, I saw some limitations and have moved this
+projects to Golang using Templ and HTMX.
 
-```shellscript
-npm run dev
-```
+This is a deprecated version of my blog. I will keep it here for historical purposes.
 
-## Deployment
+I hope you enjoy it!
 
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
