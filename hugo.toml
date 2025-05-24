@@ -5,8 +5,7 @@ theme = 'paper'
 
 [params]
   github = 'saldyy'
-  rss = false
-  gravatar = false
+  linkedin = 'phillip-nguyen-798998160'
 
   # home page profile
   avatar = 'png9981@gmail.com'
@@ -14,15 +13,13 @@ theme = 'paper'
   bio = 'Hi, this is me'
 
   # misc
-  disableHLJS = true                        # disable highlight.js
+  disableHLJS = false                        # disable highlight.js
   disablePostNavigation = true              # disable post navigation
   monoDarkIcon = true                       # show monochrome dark mode icon
   math = true                               # enable KaTeX math typesetting globally
   localKatex = false                        # use local KaTeX js/css instead of CDN
-  favicon = "favicon.ico"                   # customize the default favicon
+  favicon = "images/favicon.ico"                   # customize the default favicon
   appleTouchIcon = "apple-touch-icon.png"   # customize the default Apple touch icon
-
-  gravatarCdn = ''         # e.g. 'https://cdn.v2ex.com/gravatar/'
 
 [menu]
   [[menu.main]]
@@ -37,25 +34,21 @@ theme = 'paper'
     weight = 10
 
 [taxonomies]
-category = "categories"
-tag = "tags"
-series = "series"
+  category = "categories"
+  tag = "tags"
+  series = "series"
 
 [privacy]
-
   [privacy.vimeo]
     disabled = false
     simple = true
-
   [privacy.x]
     disabled = false
     enableDNT = true
     simple = true
-
   [privacy.instagram]
     disabled = false
     simple = true
-
   [privacy.youtube]
     disabled = false
     privacyEnhanced = true
