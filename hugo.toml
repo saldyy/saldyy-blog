@@ -1,0 +1,54 @@
+baseURL = 'https://saldyy.com'
+languageCode = 'en-us'
+title = 'A blog by Saldyy'
+theme = 'paper'
+
+[params]
+  github = 'saldyy'
+  linkedin = 'phillip-nguyen-798998160'
+
+  # home page profile
+  avatar = 'png9981@gmail.com'
+  name = 'Phillip Nguyen'
+  bio = "Hello there, I'm Phillip Nguyen, a full-stack developer and this is my personal blog."
+
+  # misc
+  disableHLJS = false                        # disable highlight.js
+  disablePostNavigation = true              # disable post navigation
+  monoDarkIcon = true                       # show monochrome dark mode icon
+  math = true                               # enable KaTeX math typesetting globally
+  localKatex = false                        # use local KaTeX js/css instead of CDN
+  favicon = "images/favicon.ico"                   # customize the default favicon
+  appleTouchIcon = "apple-touch-icon.png"   # customize the default Apple touch icon
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 10
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[privacy]
+  [privacy.vimeo]
+    disabled = false
+    simple = true
+  [privacy.x]
+    disabled = false
+    enableDNT = true
+    simple = true
+  [privacy.instagram]
+    disabled = false
+    simple = true
+  [privacy.youtube]
+    disabled = false
+    privacyEnhanced = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
