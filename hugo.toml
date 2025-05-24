@@ -10,7 +10,7 @@ theme = 'paper'
   # home page profile
   avatar = 'png9981@gmail.com'
   name = 'Phillip Nguyen'
-  bio = 'Hi, this is me'
+  bio = "Hello there, I'm Phillip Nguyen, a full-stack developer and this is my personal blog."
 
   # misc
   disableHLJS = false                        # disable highlight.js
@@ -26,11 +26,6 @@ theme = 'paper'
     identifier = "about"
     name = "About"
     url = "/about/"
-    weight = 10
-  [[menu.main]]
-    identifier = "contact"
-    name = "Contact"
-    url = "/contact/"
     weight = 10
 
 [taxonomies]
@@ -53,3 +48,7 @@ theme = 'paper'
     disabled = false
     privacyEnhanced = true
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
