@@ -1,4 +1,4 @@
-baseURL = 'https://saldyy.com'
+# baseURL = 'https://saldyy.com'
 languageCode = 'en-us'
 title = 'A blog by Saldyy'
 theme = 'paper'
