@@ -1,6 +1,6 @@
 +++
 date = '2024-09-25T14:01:05+07:00'
-draft = true
+draft = false
 title = 'Set Up ECS Using EC2 Capacity Providers'
 slug = 'set-up-ECS-using-EC2-capacity-providers'
 author = 'Phillip Nguyen'

@@ -1,6 +1,6 @@
 +++
 date = '2025-01-12T15:44:55+07:00'
-draft = true
+draft = false
 title = 'Review Aws Dops C02 Exam'
 +++
 

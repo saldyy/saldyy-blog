@@ -1,6 +1,6 @@
 +++
 date = '2024-10-09T15:21:57+07:00'
-draft = true
+draft = false
 title = 'Leetcode Problem 2696'
 +++
 

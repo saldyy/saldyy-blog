@@ -1,6 +1,6 @@
 +++
 date = '2024-10-06T15:19:49+07:00'
-draft = true
+draft = false
 title = 'Set up CI/CD pipeline with AWS'
 +++
 
