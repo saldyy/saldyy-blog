@@ -1,31 +1,4 @@
-<!doctype html>
-
-
-
-
-
-
-
-<html
-  class="not-ready lg:text-base"
-  style="--bg:#faf8f1"
-  lang="en-us"
-  dir="ltr"
-><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-
-  
-  <title>Understanding Injection Scope in Nestjs - A blog by Saldyy</title>
-
-  
-  <meta name="theme-color" />
-
-  <meta name="description" content="If you&rsquo;re a NodeJS developer, you must have heard about NestJS. It&rsquo;s a progressive Node.js framework built for creating efficient, reliable, and scalable server-side applications. One of the core feature is Dependency Injection.
+<!doctype html><html class="not-ready lg:text-base" style=--bg:#faf8f1 lang=en-us dir=ltr><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><title>Understanding Injection Scope in Nestjs - A blog by Saldyy</title><meta name=theme-color><meta name=description content="If you&rsquo;re a NodeJS developer, you must have heard about NestJS. It&rsquo;s a progressive Node.js framework built for creating efficient, reliable, and scalable server-side applications. One of the core feature is Dependency Injection.
 When using Dependency Injection, a provider in NestJS can be one of these threes scopes:
 
 Default Scope
@@ -40,305 +13,112 @@ export class DefaultScopeService {
   }
 
   getCounter() {
-    return { count: this.count&#43;&#43; };
+    return { count: this.count++ };
   }
 }
-The example above is declaring a simple service with a getCounter method. And we will inject it into the controller like this:" />
-  <meta name="author" content="Phillip Nguyen" /><link rel="preload stylesheet" as="style" href="http://localhost:1313/main.min.css" />
-
-  
-  <link rel="preload" as="image" href="http://localhost:1313/theme.svg" />
-
-  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/3ad7e7b5512976e9d545c4a492b5f942?s=160&amp;d=identicon" />
-
-  <link rel="preload" as="image" href="http://localhost:1313/github.svg" /><link rel="preload" as="image" href="http://localhost:1313/linkedin.svg" />
-
-  <script
-    defer
-    src="http://localhost:1313/highlight.min.js"
-    onload="hljs.initHighlightingOnLoad();"
-  ></script><link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css"
-  integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI"
-  crossorigin="anonymous"
-/>
-<script
-  defer
-  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"
-  integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t"
-  crossorigin="anonymous"
-></script>
-<script
-  defer
-  src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"
-  integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
-  crossorigin="anonymous"
-></script><script>
-  document.addEventListener('DOMContentLoaded', () =>
-    renderMathInElement(document.body, {
-      
-      
-      delimiters: [
-        { left: '$$', right: '$$', display: true },
-        { left: '$', right: '$', display: false },
-      ],
-      
-      throwOnError: false,
-    }),
-  );
-</script>
-
-
-  
-  <link
-    rel="icon"
-    href="http://localhost:1313/images/favicon.ico"
-  />
-  <link
-    rel="apple-touch-icon"
-    href="http://localhost:1313/apple-touch-icon.png"
-  />
-
-  <meta name="generator" content="Hugo 0.142.0">
-</head>
-<body
-    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
-  ><header
-  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
->
-  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
-    <a
-      class="-translate-y-[1px] text-2xl font-medium"
-      href="http://localhost:1313/"
-      >A blog by Saldyy</a
-    >
-    <div
-      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
-      role="button"
-      aria-label="Dark"
-    ></div>
-  </div>
-
-  <div
-    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
-    role="button"
-    aria-label="Menu"
-  ></div>
-
-  <script>
-    
-    const htmlClass = document.documentElement.classList;
-    setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
-
-    
-    const btnMenu = document.querySelector('.btn-menu');
-    btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
-    });
-
-    
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = '#faf8f1'.replace(/"/g, '');
-    const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
-
-    
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
-    }
-
-    
-    darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
-
-    
-    const btnDark = document.querySelector('.btn-dark');
-    btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
-  </script>
-
-  <div
-    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
-  ><nav
-      class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
-    ><a
-        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
-        href="/about/"
-        >About</a
-      ></nav><nav
-      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
-    >
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./github.svg)"
-        href="https://github.com/saldyy"
-        target="_blank"
-        rel="me"
-      >github</a>
-      <a
-        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
-        style="--url: url(./linkedin.svg)"
-        href="https://linkedin.com/in/phillip-nguyen-798998160"
-        target="_blank"
-        rel="me"
-      >linkedin</a>
-    </nav>
-  </div>
-</header>
-<main
-      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
-    ><article>
-  <header class="mb-14">
-    <h1 class="my-0! pb-2.5">Understanding Injection Scope in Nestjs</h1><div class="text-xs antialiased opacity-60"><time>Nov 3, 2024</time></div></header>
-
-  <section><p>If you&rsquo;re a NodeJS developer, you must have heard about <a href="https://nestjs.com/">NestJS</a>. It&rsquo;s a progressive Node.js framework built for creating efficient, reliable, and scalable server-side applications. One of the core feature is <strong>Dependency Injection</strong>.</p>
-<p>When using <strong>Dependency Injection</strong>, a provider in NestJS can be one of these threes scopes:</p>
-<ol>
-<li><strong>Default Scope</strong>
-Perhaps, this is the most common use case of the <strong>Dependency Injection</strong> in NestJS. By default, each provider will have only one instance and it will be passed accross the whole application. It&rsquo;s similar to Singleton Pattern.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Injectable</span>({ <span style="color:#a6e22e">scope</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Scope</span>.<span style="color:#a6e22e">DEFAULT</span> })
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DefaultScopeService</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCounter</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span><span style="color:#f92672">++</span> };
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>The example above is declaring a simple service with a <strong>getCounter</strong> method. And we will inject it into the controller like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Controller</span>(<span style="color:#e6db74">&#39;default-scope&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DefaultScopeController</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">defaultScopeService</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DefaultScopeService</span>) {}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#39;/count&#39;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCount</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">defaultScopeService</span>.<span style="color:#a6e22e">getCounter</span>();
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
+The example above is declaring a simple service with a getCounter method. And we will inject it into the controller like this:"><meta name=author content="Phillip Nguyen"><link rel="preload stylesheet" as=style href=/main.min.css><link rel=preload as=image href=/theme.svg><link rel=preload as=image href="https://www.gravatar.com/avatar/3ad7e7b5512976e9d545c4a492b5f942?s=160&amp;d=identicon"><link rel=preload as=image href=/github.svg><link rel=preload as=image href=/linkedin.svg><script defer src=/highlight.min.js onload=hljs.initHighlightingOnLoad()></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css integrity=sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js integrity=sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",()=>renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1}))</script><link rel=icon href=/images/favicon.ico><link rel=apple-touch-icon href=/apple-touch-icon.png><meta name=generator content="Hugo 0.142.0"><meta itemprop=name content="Understanding Injection Scope in Nestjs"><meta itemprop=description content="If you’re a NodeJS developer, you must have heard about NestJS. It’s a progressive Node.js framework built for creating efficient, reliable, and scalable server-side applications. One of the core feature is Dependency Injection.
+When using Dependency Injection, a provider in NestJS can be one of these threes scopes:
+Default Scope Perhaps, this is the most common use case of the Dependency Injection in NestJS. By default, each provider will have only one instance and it will be passed accross the whole application. It’s similar to Singleton Pattern. @Injectable({ scope: Scope.DEFAULT }) export class DefaultScopeService { private count: number; constructor() { this.count = 0; } getCounter() { return { count: this.count++ }; } } The example above is declaring a simple service with a getCounter method. And we will inject it into the controller like this:"><meta itemprop=datePublished content="2024-11-03T15:30:06+07:00"><meta itemprop=dateModified content="2024-11-03T15:30:06+07:00"><meta itemprop=wordCount content="834"><meta property="og:url" content="/posts/understanding-injection-scope-in-nestjs/"><meta property="og:site_name" content="A blog by Saldyy"><meta property="og:title" content="Understanding Injection Scope in Nestjs"><meta property="og:description" content="If you’re a NodeJS developer, you must have heard about NestJS. It’s a progressive Node.js framework built for creating efficient, reliable, and scalable server-side applications. One of the core feature is Dependency Injection.
+When using Dependency Injection, a provider in NestJS can be one of these threes scopes:
+Default Scope Perhaps, this is the most common use case of the Dependency Injection in NestJS. By default, each provider will have only one instance and it will be passed accross the whole application. It’s similar to Singleton Pattern. @Injectable({ scope: Scope.DEFAULT }) export class DefaultScopeService { private count: number; constructor() { this.count = 0; } getCounter() { return { count: this.count++ }; } } The example above is declaring a simple service with a getCounter method. And we will inject it into the controller like this:"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-11-03T15:30:06+07:00"><meta property="article:modified_time" content="2024-11-03T15:30:06+07:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Understanding Injection Scope in Nestjs"><meta name=twitter:description content="If you’re a NodeJS developer, you must have heard about NestJS. It’s a progressive Node.js framework built for creating efficient, reliable, and scalable server-side applications. One of the core feature is Dependency Injection.
+When using Dependency Injection, a provider in NestJS can be one of these threes scopes:
+Default Scope Perhaps, this is the most common use case of the Dependency Injection in NestJS. By default, each provider will have only one instance and it will be passed accross the whole application. It’s similar to Singleton Pattern. @Injectable({ scope: Scope.DEFAULT }) export class DefaultScopeService { private count: number; constructor() { this.count = 0; } getCounter() { return { count: this.count++ }; } } The example above is declaring a simple service with a getCounter method. And we will inject it into the controller like this:"><link rel=canonical href=/posts/understanding-injection-scope-in-nestjs/></head><body class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"><header class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"><div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto"><a class="-translate-y-[1px] text-2xl font-medium" href=/>A blog by Saldyy</a><div class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]" role=button aria-label=Dark></div></div><div class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8" role=button aria-label=Menu></div><script>const htmlClass=document.documentElement.classList;setTimeout(()=>{htmlClass.remove("not-ready")},10);const btnMenu=document.querySelector(".btn-menu");btnMenu.addEventListener("click",()=>{htmlClass.toggle("open")});const metaTheme=document.querySelector('meta[name="theme-color"]'),lightBg="#faf8f1".replace(/"/g,""),setDark=e=>{metaTheme.setAttribute("content",e?"#000":lightBg),htmlClass[e?"add":"remove"]("dark"),localStorage.setItem("dark",e)},darkScheme=window.matchMedia("(prefers-color-scheme: dark)");if(htmlClass.contains("dark"))setDark(!0);else{const e=localStorage.getItem("dark");setDark(e?e==="true":darkScheme.matches)}darkScheme.addEventListener("change",e=>{setDark(e.matches)});const btnDark=document.querySelector(".btn-dark");btnDark.addEventListener("click",()=>{setDark(localStorage.getItem("dark")!=="true")})</script><div class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"><nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"><a class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal" href=/about/>About</a></nav><nav class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"><a class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6" style=--url:url(./github.svg) href=https://github.com/saldyy target=_blank rel=me>github</a>
+<a class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6" style=--url:url(./linkedin.svg) href=https://linkedin.com/in/phillip-nguyen-798998160 target=_blank rel=me>linkedin</a></nav></div></header><main class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"><article><header class=mb-14><h1 class="my-0! pb-2.5">Understanding Injection Scope in Nestjs</h1><div class="text-xs antialiased opacity-60"><time>Nov 3, 2024</time></div></header><section><p>If you&rsquo;re a NodeJS developer, you must have heard about <a href=https://nestjs.com/>NestJS</a>. It&rsquo;s a progressive Node.js framework built for creating efficient, reliable, and scalable server-side applications. One of the core feature is <strong>Dependency Injection</strong>.</p><p>When using <strong>Dependency Injection</strong>, a provider in NestJS can be one of these threes scopes:</p><ol><li><strong>Default Scope</strong>
+Perhaps, this is the most common use case of the <strong>Dependency Injection</strong> in NestJS. By default, each provider will have only one instance and it will be passed accross the whole application. It&rsquo;s similar to Singleton Pattern.</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Injectable</span>({ <span style=color:#a6e22e>scope</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Scope</span>.<span style=color:#a6e22e>DEFAULT</span> })
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DefaultScopeService</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>count</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>number</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getCounter</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> { <span style=color:#a6e22e>count</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>count</span><span style=color:#f92672>++</span> };
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The example above is declaring a simple service with a <strong>getCounter</strong> method. And we will inject it into the controller like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Controller</span>(<span style=color:#e6db74>&#39;default-scope&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DefaultScopeController</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>readonly</span> <span style=color:#a6e22e>defaultScopeService</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DefaultScopeService</span>) {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#39;/count&#39;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getCount</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>defaultScopeService</span>.<span style=color:#a6e22e>getCounter</span>();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>The result when we calling this api is quite obvious. Since we declare the <strong>count</strong> as a
-private property of the service, therefore each api call will return the current value of <strong>count</strong> and then increase it by one.</p>
-<p><img src="/images/article-005/default-scope.png" alt="default-scope-example"></p>
-<ol start="2">
-<li><strong>Request Scope</strong></li>
-</ol>
-<p>In this scope, a new provider instance is created for each incoming request. We will tweak a little the example of <strong>Default Scope</strong> to see how it behaves.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Controller</span>(<span style="color:#e6db74">&#39;request-scope&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RequestScopeController</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">requestScopeService</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">RequestScopeService</span>) {}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#39;/count&#39;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCount</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">requestScopeService</span>.<span style="color:#a6e22e">getCounter</span>();
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Injectable</span>({ <span style="color:#a6e22e">scope</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Scope</span>.<span style="color:#a6e22e">REQUEST</span> })
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RequestScopeService</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCounter</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span><span style="color:#f92672">++</span> };
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
+private property of the service, therefore each api call will return the current value of <strong>count</strong> and then increase it by one.</p><p><img src=/images/article-005/default-scope.png alt=default-scope-example></p><ol start=2><li><strong>Request Scope</strong></li></ol><p>In this scope, a new provider instance is created for each incoming request. We will tweak a little the example of <strong>Default Scope</strong> to see how it behaves.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Controller</span>(<span style=color:#e6db74>&#39;request-scope&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestScopeController</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>readonly</span> <span style=color:#a6e22e>requestScopeService</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>RequestScopeService</span>) {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#39;/count&#39;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getCount</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>requestScopeService</span>.<span style=color:#a6e22e>getCounter</span>();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Injectable</span>({ <span style=color:#a6e22e>scope</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Scope</span>.<span style=color:#a6e22e>REQUEST</span> })
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RequestScopeService</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>count</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>number</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getCounter</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> { <span style=color:#a6e22e>count</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>count</span><span style=color:#f92672>++</span> };
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>As you can see, the code is almost exactly the same. The only different is that we change the
-<strong>scope</strong> in <strong>Injectable</strong> decorator. Now, let&rsquo;s test it:</p>
-<p><img src="/images/article-005/request-scope.png" alt="request-scope-example"></p>
-<p>The result is vastly different from <strong>Default Scope</strong>. For every single API call, it always return 0 because of the initiate <strong>RequestScopeService</strong> for each request. You can imagine that we will create <strong>new RequestScopeService()</strong> whenever a new request received. And we set the <strong>count</strong> property to 0 in the constructor, therefore the result will be 0.</p>
-<ol start="3">
-<li><strong>Transient Scope</strong></li>
-</ol>
-<p>As the doccument stated: <em>Transient providers are not shared across consumers. Each consumer that injects a transient provider will receive a new, dedicated instance</em>. Let&rsquo;s take alook of these code to understand how it works.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Injectable</span>({ <span style="color:#a6e22e">scope</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Scope</span>.<span style="color:#a6e22e">TRANSIENT</span> })
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransientScopeService</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCounter</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span><span style="color:#f92672">++</span> };
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Controller</span>(<span style="color:#e6db74">&#39;transient-scope&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransientScopeController</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">transientScopeService</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">TransientScopeService</span>) {}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#39;/count&#39;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCount</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">transientScopeService</span>.<span style="color:#a6e22e">getCounter</span>();
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Controller</span>({ <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;transient-scope&#39;</span>, <span style="color:#a6e22e">version</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2&#39;</span> })
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransientScopeV2Controller</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">transientScopeService</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">TransientScopeService</span>) {}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#39;/count&#39;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCount</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">transientScopeService</span>.<span style="color:#a6e22e">getCounter</span>();
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>We only need to change the scope to <strong>Transient</strong> and keep the same logic as above examples. But, in the controller, instead of one, we will inject it into two controllers. When we run the apis, here is the result:</p>
-<p><img src="/images/article-005/transient-scope.png" alt="transient-scope-example"></p>
-<p>When we call the <strong>v2</strong> api, the response is the same as <strong>Default Scope</strong>, count is increased by one after each api call. However, switching to the original api, it resets the count.
-When we use Transient Scope, whenever we inject the provider to a consumer. NestJS will create a new instance of the provider. In this case, it will initiate <strong>new TransientScopeService()</strong> and set the count to 0.</p>
-<p>Those are the concept and how to use each type of the <strong>Injection Scope</strong> in NestJS. But you might wonder what if we want to combine those scope with each other. In that case, we need to be aware of the <a href="https://docs.nestjs.com/fundamentals/injection-scopes#scope-hierarchy">Scope hierarchy</a>
-Let&rsquo;s create a controller using all three scopes:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Controller</span>(<span style="color:#e6db74">&#39;combined&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CombinedScopeController</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">defaultScopeService</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DefaultScopeService</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">requestScopeService</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">RequestScopeService</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">transientScopeService</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">TransientScopeService</span>,
-</span></span><span style="display:flex;"><span>  ) {}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#39;/count&#39;</span>)
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCount</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">defaultCount</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">defaultScopeService</span>.<span style="color:#a6e22e">getCounter</span>(),
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">requestCount</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">requestScopeService</span>.<span style="color:#a6e22e">getCounter</span>(),
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">transientCount</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">transientScopeService</span>.<span style="color:#a6e22e">getCounter</span>(),
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Now&rsquo;s let test this api:</p>
-<p><img src="/images/article-005/combined-scope.png" alt="combined-scope-example"></p>
-<p>Hmmm, it&rsquo;s stranged. The <strong>Default Scope</strong> is still working as expected but the <strong>Transient Scope</strong> is behaved weirdly, to be exact, it&rsquo;s giving the same result as <strong>Request Scope</strong>. How can that be possible?</p>
-<p>Turns out, when we use <strong>Request Scope</strong>, it will bubble up the injection chain. In other words, all of the consumer injecting a <strong>Request Scope</strong> provider will also becomes <strong>Request Scope</strong>. In this example, the <strong>CombinedScopeController</strong> is also affected by it. But that doesn&rsquo;t really explain why the <strong>Transient Scope</strong> working improperly. Remember how <strong>Transient</strong> works? It injects a new in instance to a new consumer. In this case, since the controller is a request scope, it will be terminated after each request successfully handled and a new instance will be created for each new incoming request. Each newly spawn instance will be also treated as a new consumer.</p>
-<p align="center">
-  <img src="/gifs/mind-blow.gif#center" alt="mind-blow" />
-</p>
-<p>That&rsquo;s one of the weird behavior of NestJS for <strong>Dependency Injection</strong> which can lead to some magic bug. Let&rsquo;s take a note on this feature and use the <strong>Injection Scope</strong> with caution.</p>
-<p>All of my example code can be found in this <a href="https://github.com/saldyy/nestjs-injection-scope">repository</a>.</p>
-</section>
-
-  </article></main><footer
-  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
->
-  <div class="mr-auto">&copy;2025
-    <a class="link" href="http://localhost:1313/">A blog by Saldyy</a></div>
-</footer>
-</body>
-</html>
+<strong>scope</strong> in <strong>Injectable</strong> decorator. Now, let&rsquo;s test it:</p><p><img src=/images/article-005/request-scope.png alt=request-scope-example></p><p>The result is vastly different from <strong>Default Scope</strong>. For every single API call, it always return 0 because of the initiate <strong>RequestScopeService</strong> for each request. You can imagine that we will create <strong>new RequestScopeService()</strong> whenever a new request received. And we set the <strong>count</strong> property to 0 in the constructor, therefore the result will be 0.</p><ol start=3><li><strong>Transient Scope</strong></li></ol><p>As the doccument stated: <em>Transient providers are not shared across consumers. Each consumer that injects a transient provider will receive a new, dedicated instance</em>. Let&rsquo;s take alook of these code to understand how it works.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Injectable</span>({ <span style=color:#a6e22e>scope</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Scope</span>.<span style=color:#a6e22e>TRANSIENT</span> })
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TransientScopeService</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>count</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>number</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getCounter</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> { <span style=color:#a6e22e>count</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>count</span><span style=color:#f92672>++</span> };
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Controller</span>(<span style=color:#e6db74>&#39;transient-scope&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TransientScopeController</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>readonly</span> <span style=color:#a6e22e>transientScopeService</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>TransientScopeService</span>) {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#39;/count&#39;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getCount</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>transientScopeService</span>.<span style=color:#a6e22e>getCounter</span>();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Controller</span>({ <span style=color:#a6e22e>path</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;transient-scope&#39;</span>, <span style=color:#a6e22e>version</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;2&#39;</span> })
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TransientScopeV2Controller</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>readonly</span> <span style=color:#a6e22e>transientScopeService</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>TransientScopeService</span>) {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#39;/count&#39;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getCount</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>transientScopeService</span>.<span style=color:#a6e22e>getCounter</span>();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>We only need to change the scope to <strong>Transient</strong> and keep the same logic as above examples. But, in the controller, instead of one, we will inject it into two controllers. When we run the apis, here is the result:</p><p><img src=/images/article-005/transient-scope.png alt=transient-scope-example></p><p>When we call the <strong>v2</strong> api, the response is the same as <strong>Default Scope</strong>, count is increased by one after each api call. However, switching to the original api, it resets the count.
+When we use Transient Scope, whenever we inject the provider to a consumer. NestJS will create a new instance of the provider. In this case, it will initiate <strong>new TransientScopeService()</strong> and set the count to 0.</p><p>Those are the concept and how to use each type of the <strong>Injection Scope</strong> in NestJS. But you might wonder what if we want to combine those scope with each other. In that case, we need to be aware of the <a href=https://docs.nestjs.com/fundamentals/injection-scopes#scope-hierarchy>Scope hierarchy</a>
+Let&rsquo;s create a controller using all three scopes:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Controller</span>(<span style=color:#e6db74>&#39;combined&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CombinedScopeController</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>(
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>readonly</span> <span style=color:#a6e22e>defaultScopeService</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DefaultScopeService</span>,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>readonly</span> <span style=color:#a6e22e>requestScopeService</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>RequestScopeService</span>,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>readonly</span> <span style=color:#a6e22e>transientScopeService</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>TransientScopeService</span>,
+</span></span><span style=display:flex><span>  ) {}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>Get</span>(<span style=color:#e6db74>&#39;/count&#39;</span>)
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>getCount</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>defaultCount</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>defaultScopeService</span>.<span style=color:#a6e22e>getCounter</span>(),
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>requestCount</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>requestScopeService</span>.<span style=color:#a6e22e>getCounter</span>(),
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>transientCount</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>transientScopeService</span>.<span style=color:#a6e22e>getCounter</span>(),
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Now&rsquo;s let test this api:</p><p><img src=/images/article-005/combined-scope.png alt=combined-scope-example></p><p>Hmmm, it&rsquo;s stranged. The <strong>Default Scope</strong> is still working as expected but the <strong>Transient Scope</strong> is behaved weirdly, to be exact, it&rsquo;s giving the same result as <strong>Request Scope</strong>. How can that be possible?</p><p>Turns out, when we use <strong>Request Scope</strong>, it will bubble up the injection chain. In other words, all of the consumer injecting a <strong>Request Scope</strong> provider will also becomes <strong>Request Scope</strong>. In this example, the <strong>CombinedScopeController</strong> is also affected by it. But that doesn&rsquo;t really explain why the <strong>Transient Scope</strong> working improperly. Remember how <strong>Transient</strong> works? It injects a new in instance to a new consumer. In this case, since the controller is a request scope, it will be terminated after each request successfully handled and a new instance will be created for each new incoming request. Each newly spawn instance will be also treated as a new consumer.</p><p align=center><img src=/gifs/mind-blow.gif#center alt=mind-blow></p><p>That&rsquo;s one of the weird behavior of NestJS for <strong>Dependency Injection</strong> which can lead to some magic bug. Let&rsquo;s take a note on this feature and use the <strong>Injection Scope</strong> with caution.</p><p>All of my example code can be found in this <a href=https://github.com/saldyy/nestjs-injection-scope>repository</a>.</p></section></article></main><footer class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"><div class=mr-auto>&copy;2025
+<a class=link href=/>A blog by Saldyy</a></div></footer></body></html>
