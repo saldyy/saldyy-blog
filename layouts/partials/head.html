@@ -1,0 +1,102 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- title -->
+  <title>
+    {{- if not .IsHome -}}{{- .Title }} - {{ end -}}{{- site.Title -}}
+  </title>
+
+  <!-- meta -->
+  <meta name="theme-color" />
+
+  <!-- author -->
+  {{- $site_author := or site.Author.name site.Params.name site.Title -}}
+  <!---->
+  {{- if eq .Kind "page" -}}
+  <meta name="description" content="{{- .Summary -}}" />
+  <meta name="author" content="{{- or .Params.author $site_author -}}" />
+  {{- else -}}
+  <!---->
+  <meta name="description" content="{{- site.Params.description | default (print `A personal blog`) -}}" />
+  <meta name="author" content="{{- $site_author -}}" />
+  {{- end -}}
+
+  <!-- css & js -->
+  {{- $main := resources.Get "main.css" -}}
+  <!---->
+  {{- $custom := resources.Get "custom.css" -}}
+  <!---->
+  {{- $css := slice $main $custom | resources.Concat "main.css" | minify -}}
+  <link rel="preload stylesheet" as="style" href="{{- $css.Permalink -}}" />
+
+  <!-- dark icon -->
+  {{- $dark_icon := "theme.png" -}}
+  <!---->
+  {{- if site.Params.monoDarkIcon -}}{{- $dark_icon = "theme.svg" -}}{{- end -}}
+  <!---->
+  <link rel="preload" as="image" href="{{- $dark_icon | absURL -}}" />
+
+  <!-- avatar -->
+  {{- $avatar_url := $.Scratch.Get "avatar_url" -}}
+  <!---->
+  {{- if $avatar_url -}}
+  <link rel="preload" as="image" href="{{- $avatar_url -}}" />
+  {{- end -}}
+  <!---->
+
+  <!-- social list -->
+  {{- range $.Scratch.Get "social_list" -}}
+  <link rel="preload" as="image" href="{{- printf `%s.svg` . | absURL -}}" />
+  {{- end -}}
+  <!---->
+
+  <!-- highlight js -->
+  {{- if and .IsPage (not site.Params.disableHLJS) -}}
+  <script defer src="{{- `highlight.min.js` | absURL -}}" onload="hljs.initHighlightingOnLoad();"></script>
+  {{- end -}}
+
+  <!-- math -->
+  {{- if or .Params.math site.Params.math -}}
+  <!---->
+  {{- partial "math.html" . -}}
+  <!---->
+  {{- end -}}
+  <!---->
+
+  <!-- favicon -->
+  <link rel="icon" href="{{- site.Params.favicon | default `favicon.ico` | absURL -}}" />
+  <link rel="apple-touch-icon" href="{{- site.Params.appleTouchIcon | default `apple-touch-icon.png` | absURL -}}" />
+
+  <!-- generator -->
+  {{- hugo.Generator -}}
+
+  <!-- production -->
+  {{- if or hugo.IsProduction (eq site.Params.env "production") -}}
+  <!---->
+  {{- template "_internal/google_analytics.html" . -}}
+  <!---->
+  {{- template "_internal/schema.html" . -}}
+  <!---->
+  {{- template "_internal/opengraph.html" . -}}
+  <!---->
+  {{- template "_internal/twitter_cards.html" . -}}
+  <!-- RSS -->
+  {{- range .AlternativeOutputFormats -}}
+  <link rel="{{- .Rel -}}" type="{{- .MediaType.Type -}}" href="{{- .Permalink -}}" title="{{- site.Title -}}" />
+  {{- end -}}
+
+  <!-- canonical -->
+  <link rel="canonical" href="{{- .Permalink -}}" />
+  {{- end -}}
+  <!---->
+  <script>
+    !function (t, e) {var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) {function g(t, e) {var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () {t.push([e].concat(Array.prototype.slice.call(arguments, 0)))}} (p = t.createElement("script")).type = "text/javascript", p.crossOrigin = "anonymous", p.async = !0, p.src = s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) {var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e}, u.people.toString = function () {return u.toString(1) + ".people (stub)"}, o = "init be ys Ss me gs ws capture Ne calculateEventProperties xs register register_once register_for_session unregister unregister_for_session Rs getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Is ks createPersonProfile Ps bs opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing $s debug Es getPageViewId captureTraceFeedback captureTraceMetric".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a])}, e.__SV = 1)}(document, window.posthog || []);
+    posthog.init('phc_FrDE8YIY1kghWfBmCpzKfCyLOna4oHljGnMv367JwaP', {
+      api_host: 'https://us.i.posthog.com',
+      defaults: '2025-05-24',
+      person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+  </script>
+</head>
