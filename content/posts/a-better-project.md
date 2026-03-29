@@ -30,7 +30,7 @@ One of the biggest drawbacks from my old project was hosting. The project was pa
 expired. 
 
 In the end, it all comes down to choose the right tools for the right job. After explore everything
-that I wanted to try with **HTMX**, I reached too a point where I simple need a platform that allow
+that I wanted to try with **HTMX**, I reached to a point where I simple need a platform that allow
 me to write and host content - ideally without any cost. And that's where **Hugo** shines. It's
 powerful, easy to use and support a wide range of hosting options. I'm also planning to set up a
 Homelab of my own, which might become a long term solution for hosting. I will share about that
