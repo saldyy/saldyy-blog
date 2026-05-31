@@ -1,7 +1,7 @@
 +++
 date = '2026-05-31T13:44:55+07:00'
 draft = false
-title = 'Review CKA C02 Exam'
+title = 'Review CKA Exam'
 slug = 'review-cka-exam'
 +++
 
