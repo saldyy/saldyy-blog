@@ -2,6 +2,7 @@
 date = '2024-11-03T15:30:06+07:00'
 draft = false
 title = 'Understanding Injection Scope in Nestjs'
+slug = 'understanding-injection-scope-in-nestjs'
 +++
 
 If you're a NodeJS developer, you must have heard about [NestJS](https://nestjs.com/). It's a progressive Node.js framework built for creating efficient, reliable, and scalable server-side applications. One of the core feature is **Dependency Injection**.

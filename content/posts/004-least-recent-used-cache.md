@@ -2,6 +2,7 @@
 date = '2024-10-13T15:27:14+07:00'
 draft = false
 title = 'Least Recent Used Cache'
+slug = 'least-recent-used-cache'
 +++
 
 Recently, I encountered an interesting problem in Leetcode, which is [LRU Cache](https://leetcode.com/problems/lru-cache/description/). This is not a normal **LRU Cache** that I'm familiar with. It has some twists which is:

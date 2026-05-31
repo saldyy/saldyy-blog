@@ -2,6 +2,7 @@
 date = '2024-10-06T15:19:49+07:00'
 draft = false
 title = 'Set up CI/CD pipeline with AWS'
+slug = 'set-up-CI-CD-pipeline-with-AWS'
 +++
 
 In this [article](https://saldyy.com/articles/set-up-ECS-using-EC2-capacity-providers), we have successfully setup an ECS cluster and deploy a simple Golang application to it. Now, we will create a CI/CD pipeline for our application in AWS.

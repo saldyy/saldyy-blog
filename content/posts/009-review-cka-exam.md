@@ -1,7 +1,8 @@
 +++
 date = '2026-05-31T13:44:55+07:00'
-draft = false
+draft = true
 title = 'Review CKA C02 Exam'
+slug = 'review-cka-exam'
 +++
 
 The CKA is probably one of the most in-demand certifications in the Cloud industry. However, studying Kubernetes as a newcomer is a real pain due to the massive scope of its domain. I recently passed the exam and wanted to share my journey to achieving it.

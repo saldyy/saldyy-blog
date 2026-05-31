@@ -2,6 +2,7 @@
 date = '2025-05-25T21:18:07+07:00'
 draft = false
 title = 'A Better Project'
+slug = 'a-better-project'
 +++
 
 This blog has recently undergone a transformation. I've moved it from a custom setup using
