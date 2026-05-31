@@ -2,6 +2,7 @@
 date = '2026-04-24T21:18:07+07:00'
 draft = false
 title = 'The new AI era'
+slug = 'ai-era'
 +++
 
 The last year was crazy: **AI**, **AI** and **AI**. Everybody is talking about it and trying to make as much money as possible from it. Its growth is becoming extremely intimidating. I was skeptical for a long time about applying **AI** to my work due to concern regarding accuracy and its effect to software industry. However, I cannot fight the current; otherwise, I will be the one that got left behind. So I started to integrate it into my workflow. Suprisingly, **AI** asistants have been extremely helpful for my productivity.

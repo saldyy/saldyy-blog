@@ -2,6 +2,7 @@
 date = '2025-01-12T15:44:55+07:00'
 draft = false
 title = 'Review Aws Dops C02 Exam'
+slug = 'review-aws-dops-c02-exam'
 +++
 
 So 2024 had passed and there is one big thing that I did not finish. The AWS Devop and there is one big thing that I did not finish. The **AWS DevOps Engineer - Professional Certification** is something that I've aimed since I was a college student. I made a plan to finish it within last year but got side-tracked so many times since 2024 was a little wild for me. New year has come and I need to keep the promise to myself and get this overwith. And I did it. 

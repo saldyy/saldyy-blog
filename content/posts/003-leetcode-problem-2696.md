@@ -2,6 +2,7 @@
 date = '2024-10-09T15:21:57+07:00'
 draft = false
 title = 'Leetcode Problem 2696'
+slug = 'leetcode-problem-2696'
 +++
 
 Let's solve the problem 2696 from Leetcode: [Minimum String Length After Removing Substrings](https://leetcode.com/problems/minimum-string-length-after-removing-substrings/description/).
