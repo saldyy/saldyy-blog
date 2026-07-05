@@ -142,7 +142,7 @@ for critical application. And the minor one was never reassigned to node success
 insufficient memory. In the scenario, we might want to add a new node to the cluster or using
 automated node autoscaler such as [Karpenter](https://karpenter.sh/).
 
-![critical-preempt-minor-application](/images/article-010/critical-deployment-preemp-minor.png)
+![critical-preempt-minor-application](/images/article-010/critical-deployment-preempt-minor.png)
 
 ![insufficient-memory-in-minor-deployment](/images/article-010/insufficient-memory.png)
 
