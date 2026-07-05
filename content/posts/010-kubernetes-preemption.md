@@ -1,6 +1,6 @@
 +++
 date = '2026-06-12T11:53:55+07:00'
-draft = true
+draft = false
 title = 'Preemption in Kubernetes'
 slug = 'preemption-in-kubernetes'
 +++
